@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic SPA - Rohith Dharavathu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            padding-left: 2.5rem; 
+            border-left: 3px solid #0047FF;
+        }
+        .timeline-item:last-child {
+            border-left: 3px solid transparent;
+            padding-bottom: 0;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -0.6rem; 
+            top: 0.25rem;
+            width: 1rem; 
+            height: 1rem; 
+            border-radius: 9999px;
+            background-color: #0047FF;
+            border: 2px solid #f3f4f6;
+        }
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <nav class="sticky-nav bg-white shadow-md">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-center h-16 space-x-4 sm:space-x-8">
+                <a href="#summary" class="flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">Summary</a>
+                <a href="#skills" class="flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">Skills</a>
+                <a href="#experience" class="flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">Experience</a>
+                <a href="#projects" class="flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">Projects</a>
+                <a href="#education" class="flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">Education</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="summary" class="text-center py-12 md:py-16">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight">
+                Rohith Dharavathu
+            </h1>
+            <h2 class="mt-4 text-2xl md:text-3xl font-semibold text-[#0047FF]">
+                Data Scientist & Generative AI Engineer
+            </h2>
+            <p class="mt-6 max-w-3xl mx-auto text-lg text-gray-600">
+                Visualizing the profile of a data scientist with expertise in Generative AI, Machine Learning, and Cloud/MLOps, translating complex skills and projects into actionable insights.
+            </p>
+            <div class="mt-10 max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white rounded-lg shadow-md p-4 text-center transform transition-transform hover:scale-105">
+                    <p class="text-4xl font-bold text-[#0047FF]">3</p>
+                    <p class="text-sm font-medium text-gray-500">Publications</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-4 text-center transform transition-transform hover:scale-105">
+                    <p class="text-4xl font-bold text-[#0047FF]">4</p>
+                    <p class="text-sm font-medium text-gray-500">Core Skill Pillars</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-4 text-center transform transition-transform hover:scale-105">
+                    <p class="text-4xl font-bold text-[#0047FF]">3</p>
+                    <p class="text-sm font-medium text-gray-500">Key Projects</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-4 text-center transform transition-transform hover:scale-105">
+                    <p class="text-4xl font-bold text-[#0047FF]">B.Tech</p>
+                    <p class="text-sm font-medium text-gray-500">AI Degree</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="mb-12">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-3xl font-bold text-center mb-6">Core Skill Pillars</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+                    The skill set is built on four interconnected pillars. This radar chart visualizes the focus and depth across these key domains, highlighting a balanced expertise in both theoretical AI and practical cloud deployment.
+                </p>
+                <div class="chart-container">
+                    <canvas id="skillsRadarChart"></canvas>
+                </div>
+                <p class="text-center text-sm text-gray-500 mt-4">
+                    This visualization demonstrates a strong, well-rounded foundation, with a clear spike in Generative AI & ML, supported by robust programming and cloud infrastructure skills.
+                </p>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-3xl font-bold text-center mb-6">Key Technology Proficiency</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+                    Beyond broad categories, proficiency in specific technologies is crucial. This chart ranks key tools and frameworks, showing the technologies leveraged most in projects and professional work.
+                </p>
+                <div class="chart-container" style="height: 400px; max-height: 500px;">
+                    <canvas id="skillsBarChart"></canvas>
+                </div>
+                <p class="text-center text-sm text-gray-500 mt-4">
+                    Python, SQL, and Generative AI frameworks like LangChain form the core of the technical stack, enabling advanced data manipulation, modeling, and application development.
+                </p>
+            </div>
+        </section>
+
+        <section id="experience" class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-10">Professional Experience Journey</h2>
+            <div class="bg-white rounded-lg shadow-md p-6 md:p-10">
+                <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">
+                    This timeline illustrates the career progression, starting from foundational internships in machine learning and computer vision to a full-time role focusing on Cloud/DataOps and MLOps.
+                </p>
+                <div class="relative max-w-3xl mx-auto">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-xl font-bold text-gray-900">Software Product Engineer (Cloud/DataOps Focus)</h3>
+                        <p class="text-md font-medium text-[#0047FF]">TRAINZ HOLDING PVT LTD.</p>
+                        <p class="text-sm text-gray-500 mb-2">Feb 2025 – Present</p>
+                        <p class="text-gray-700">Spearheading infrastructure automation using AWS, Terraform, and CloudFormation to build scalable environments for analytical data pipelines and deploying ML artifacts via CI/CD.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-xl font-bold text-gray-900">Software Product Engineer (Data Migration)</h3>
+                        <p class="text-md font-medium text-[#0047FF]">TRAINZ HOLDING PVT LTD.</p>
+                        <p class="text-sm text-gray-500 mb-2">Sep 2024 – Feb 2025</p>
+                        <p class="text-gray-700">Assessed on-premises databases for cloud readiness and optimized data transfer workflows, ensuring data integrity for cloud-based analytics.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-xl font-bold text-gray-900">Intern (Computer Vision & Process Automation)</h3>
+                        <p class="text-md font-medium text-[#0047FF]">GRID CSP TECHNOLOGIES</p>
+                        <p class="text-sm text-gray-500 mb-2">Jan 2024 – Apr 2024</p>
+                        <p class="text-gray-700">Developed a real-time card detection solution from live feeds, automating image processing tasks and enhancing system workflow efficiency.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h3 class="text-xl font-bold text-gray-900">Intern (Machine Learning)</h3>
+                        <p class="text-md font-medium text-[#0047FF]">ENTERPRISE SOFTLABS PVT LTD</p>
+                        <p class="text-sm text-gray-500 mb-2">Jan 2023 – Mar 2023</p>
+                        <p class="text-gray-700">Engineered a drug effectiveness prediction model using data pre-processing and binary classification algorithms, gaining hands-on ML experience.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-10">Key Project Showcase</h2>
+            <p class="text-center text-gray-600 mb-10 max-w-3xl mx-auto">
+                Practical application is the best measure of skill. This section highlights three key projects that demonstrate expertise in Generative AI, Time-Series Forecasting, and Classical Machine Learning (Classification).
+            </p>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                <div class="bg-white rounded-lg shadow-md p-6 flex flex-col transform transition-transform hover:scale-105">
+                    <h3 class="text-xl font-bold text-[#0047FF]">Agentic AI Learning Solution</h3>
+                    <p class="text-sm text-gray-500 mb-4">AI Hackathon at TRIANZ</p>
+                    <p class="text-gray-700 mb-4">Developed an **Agentic AI** solution using Generative AI (LLMs) to create an adaptive training agent for employees. This demonstrates a clear focus on practical, business-driven AI.</p>
+                    <div class="mt-auto">
+                        <h4 class="font-semibold mb-2">Key Features:</h4>
+                        <ul class="list-none space-y-2">
+                            <li class="flex items-center"><span class="text-[#FFC700] mr-2">►</span>Personalized learning paths</li>
+                            <li class="flex items-center"><span class="text-[#FFC700] mr-2">►</span>Identified and closed skill gaps</li>
+                            <li class="flex items-center"><span class="text-[#FFC700] mr-2">►</span>Accelerated employee training</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 flex flex-col transform transition-transform hover:scale-105">
+                    <h3 class="text-xl font-bold text-[#0047FF]">Covid-19 Detection Model</h3>
+                    <p class="text-sm text-gray-500 mb-4">Classification Project</p>
+                    <p class="text-gray-700 mb-4">This project demonstrates core machine learning skills in classification, feature selection, and model validation. An ensemble model was designed to detect COVID-19 from Chest-CT scans.</p>
+                    <div class="chart-container relative" style="height: 200px; max-height: 200px;">
+                        <canvas id="covidDonutChart"></canvas>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                            <span class="text-4xl font-extrabold text-gray-800">82%</span>
+                        </div>
+                    </div>
+                    <p class="text-center text-md font-semibold text-gray-700 mt-4">
+                        Achieved 82% Classification Accuracy
+                    </p>
+                    <p class="text-center text-sm text-gray-500 mt-2">
+                        Using an SVDD classifier with Particle Swarm Optimization (PSO) for feature selection.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md p-6 flex flex-col transform transition-transform hover:scale-105">
+                    <h3 class="text-xl font-bold text-[#0047FF]">Temperature Forecasting</h3>
+                    <p class="text-sm text-gray-500 mb-4">Time-Series Project</p>
+                    <p class="text-gray-700 mb-4">This project showcases expertise in time-series analysis, a key requirement in many data science roles. Deep learning models (LSTM & RNN) were used for prediction.</p>
+                    <div class="chart-container" style="height: 200px; max-height: 200px;">
+                        <canvas id="forecastingLineChart"></canvas>
+                    </div>
+                    <p class="text-center text-sm text-gray-500 mt-4">
+                        This chart shows the high correlation between the model's predictions and the actual temperature data, demonstrating model effectiveness.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="education" class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-10">Academic & Research Foundation</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold mb-4">Education</h3>
+                    <p class="text-xl font-semibold text-[#0047FF]">B. Tech in Computer Science and Engineering (Artificial Intelligence)</p>
+                    <p class="text-md text-gray-600">Amrita Vishwa Vidyapeetham, Coimbatore</p>
+                    <p class="text-md text-gray-600">Aug 2020 – Jul 2024</p>
+                    <p class="mt-4 text-lg font-semibold text-gray-700">CGPA: 7.54 / 10</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold mb-4">Publications</h3>
+                    <ul class="list-none space-y-4">
+                        <li class="flex">
+                            <span class="text-[#0047FF] mr-3 font-bold">●</span>
+                            <span class="text-gray-700">Detection of Mental illness from social media Text, IEEE IIT MANDI - ICCCNT-2024</span>
+                        </li>
+                        <li class="flex">
+                            <span class="text-[#0047FF] mr-3 font-bold">●</span>
+                            <span class="text-gray-700">An Empirical Comparative Study of Machine Learning Algorithms for Telugu News Classification, ICACECS-2023, Springer</span>
+                        </li>
+                        <li class="flex">
+                            <span class("text-[#0047FF] mr-3 font-bold">●</span>
+                            <span class="text-gray-700">Comparative Analysis of Speech Synthesis Models Performance Analysis and Evaluation, SSCI-2023, Scopus Springer</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center p-10 mt-12 border-t border-gray-200 bg-white">
+        <p class="text-gray-600 mb-4">Connecting expertise with opportunity.</p>
+        <div class="flex justify-center space-x-8">
+            <a href="https://linkedin.com/in/rohith-dharavathu/" target="_blank" rel="noopener noreferrer" class="text-[#0047FF] hover:text-[#FFC700] text-sm font-medium transition-colors">
+                LINKEDIN
+            </a>
+            <a href="https://github.com/rohithdharavathu" target="_blank" rel="noopener noreferrer" class="text-[#0047FF] hover:text-[#FFC700] text-sm font-medium transition-colors">
+                GITHUB
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            
+            const palette = {
+                blue: '#0047FF',
+                cyan: '#00D1FF',
+                yellow: '#FFC700',
+                lightYellow: '#FFE380',
+                dark: '#1A1A1A',
+                lightGray: '#f3f4f6'
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                } else {
+                    return label;
+                }
+            };
+
+            const defaultOptions = {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: palette.dark,
+                            font: {
+                                family: "'Inter', sans-serif"
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        },
+                        bodyFont: {
+                            family: "'Inter', sans-serif"
+                        },
+                        titleFont: {
+                            family: "'Inter', sans-serif"
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: palette.dark,
+                            font: {
+                                family: "'Inter', sans-serif"
+                            }
+                        },
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: palette.dark,
+                            font: {
+                                family: "'Inter', sans-serif"
+                            }
+                        },
+                        grid: {
+                            color: '#e0e0e0',
+                            linestyle: 'dotted'
+                        }
+                    }
+                }
+            };
+
+            const skillsRadarCtx = document.getElementById('skillsRadarChart');
+            if (skillsRadarCtx) {
+                new Chart(skillsRadarCtx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['Generative AI & ML', 'Programming & Data', 'Cloud & MLOps', 'Frameworks'],
+                        datasets: [{
+                            label: 'Skill Focus',
+                            data: [10, 9, 8, 8],
+                            backgroundColor: 'rgba(0, 71, 255, 0.2)',
+                            borderColor: palette.blue,
+                            pointBackgroundColor: palette.blue,
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: palette.blue
+                        }]
+                    },
+                    options: {
+                        ...defaultOptions,
+                        scales: {
+                            r: {
+                                angleLines: {
+                                    color: '#e0e0e0'
+                                },
+                                grid: {
+                                    color: '#e0e0e0'
+                                },
+                                pointLabels: {
+                                    color: palette.dark,
+                                    font: {
+                                        size: 13,
+                                        family: "'Inter', sans-serif",
+                                        weight: '500'
+                                    }
+                                },
+                                ticks: {
+                                    backdropColor: 'transparent',
+                                    color: '#6b7280',
+                                    font: {
+                                        size: 10
+                                    },
+                                    stepSize: 2
+                                },
+                                suggestedMin: 0,
+                                suggestedMax: 10
+                            }
+                        }
+                    }
+                });
+            }
+
+            const skillsBarCtx = document.getElementById('skillsBarChart');
+            if (skillsBarCtx) {
+                new Chart(skillsBarCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: [
+                            'Python', 
+                            'SQL', 
+                            ['Generative AI', '(LLMs)'], 
+                            'LangChain', 
+                            'AWS', 
+                            'DevOps', 
+                            'PyTorch', 
+                            'TensorFlow'
+                        ],
+                        datasets: [{
+                            label: 'Proficiency/Focus',
+                            data: [10, 9, 10, 9, 8, 8, 7, 7],
+                            backgroundColor: [
+                                palette.blue,
+                                palette.blue,
+                                palette.cyan,
+                                palette.cyan,
+                                palette.yellow,
+                                palette.yellow,
+                                palette.lightYellow,
+                                palette.lightYellow
+                            ],
+                            borderColor: [
+                                palette.blue,
+                                palette.blue,
+                                palette.cyan,
+                                palette.cyan,
+                                palette.yellow,
+                                palette.yellow,
+                                palette.lightYellow,
+                                palette.lightYellow
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        ...defaultOptions,
+                        indexAxis: 'y',
+                        plugins: {
+                            ...defaultOptions.plugins,
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            x: {
+                                ...defaultOptions.scales.x,
+                                grid: { display: true, color: '#f0f0f0' },
+                                suggestedMin: 0,
+                                suggestedMax: 10
+                            },
+                            y: {
+                                ...defaultOptions.scales.y,
+                                grid: { display: false }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const covidDonutCtx = document.getElementById('covidDonutChart');
+            if (covidDonutCtx) {
+                new Chart(covidDonutCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Accurate', 'Inaccurate'],
+                        datasets: [{
+                            label: 'Classification Accuracy',
+                            data: [82, 18],
+                            backgroundColor: [
+                                palette.blue,
+                                palette.lightGray
+                            ],
+                            borderColor: [
+                                palette.blue,
+                                palette.lightGray
+                            ],
+                            hoverOffset: 4
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        cutout: '70%',
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    title: tooltipTitleCallback
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const forecastingLineCtx = document.getElementById('forecastingLineChart');
+            if (forecastingLineCtx) {
+                new Chart(forecastingLineCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Q1', 'Q2', 'Q3', 'Q4', 'Q1', 'Q2'],
+                        datasets: [{
+                            label: 'Actual',
+                            data: [10, 15, 12, 17, 20, 22],
+                            borderColor: palette.blue,
+                            backgroundColor: 'transparent',
+                            tension: 0.3,
+                            pointRadius: 0
+                        }, {
+                            label: 'Predicted',
+                            data: [9, 16, 11, 18, 19, 23],
+                            borderColor: palette.cyan,
+                            backgroundColor: 'transparent',
+                            borderDash: [5, 5],
+                            tension: 0.3,
+                            pointRadius: 0
+                        }]
+                    },
+                    options: {
+                        ...defaultOptions,
+                        plugins: {
+                            ...defaultOptions.plugins,
+                            legend: {
+                                display: true,
+                                position: 'bottom',
+                                labels: { ...defaultOptions.plugins.legend.labels, boxWidth: 12, padding: 20 }
+                            }
+                        },
+                        scales: {
+                            x: { ...defaultOptions.scales.x, grid: { display: false } },
+                            y: { ...defaultOptions.scales.y, grid: { display: false }, ticks: { display: false } }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
